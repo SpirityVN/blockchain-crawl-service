@@ -1416,6 +1416,14 @@
   dependencies:
     "@types/node" "*"
 
+"@types/cron@^2.0.0":
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/@types/cron/-/cron-2.0.0.tgz#4fe75f2720a3b69a1f7b80e656749f4c2c96d727"
+  integrity sha512-xZM08fqvwIXgghtPVkSPKNgC+JoMQ2OHazEvyTKnNf7aWu1aB6/4lBbQFrb03Td2cUGG7ITzMv3mFYnMu6xRaQ==
+  dependencies:
+    "@types/luxon" "*"
+    "@types/node" "*"
+
 "@types/cross-spawn@6.0.2":
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/@types/cross-spawn/-/cross-spawn-6.0.2.tgz#168309de311cd30a2b8ae720de6475c2fbf33ac7"
@@ -1530,6 +1538,11 @@
   version "4.14.191"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.191.tgz#09511e7f7cba275acd8b419ddac8da9a6a79e2fa"
   integrity sha512-BdZ5BCCvho3EIXw6wUCXHe7rS53AIDPLE+JzwgT+OsJk53oBfbSmZZ7CX4VaRoN78N+TJpFi9QPlfIVNmJYWxQ==
+
+"@types/luxon@*":
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/@types/luxon/-/luxon-3.2.0.tgz#99901b4ab29a5fdffc88fff59b3b47fbfbe0557b"
+  integrity sha512-lGmaGFoaXHuOLXFvuju2bfvZRqxAqkHPx9Y9IQdQABrinJJshJwfNCKV+u7rR3kJbiqfTF/NhOkcxxAFrObyaA==
 
 "@types/mime@*":
   version "3.0.1"

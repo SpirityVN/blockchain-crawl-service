@@ -9,45 +9,15 @@ Table job {
   end_block Int
   status JobStatus
   created_at DateTime [default: `now()`, not null]
-  create_news_event create_news_event [not null]
-  claim_token_event claim_token_event [not null]
-  buy_turn buy_turn [not null]
-  open_cell open_cell [not null]
+  events events [not null]
 }
 
-Table create_news_event {
-  id Int [pk]
-  owner_address String [not null]
-  is_claim String [not null]
-  total_supply String [not null]
-  tx_hash String [not null]
-  scores Int [not null]
-  job_id Int [not null]
-  job job [not null]
-}
-
-Table claim_token_event {
-  id Int [pk]
-  reader_address String [not null]
-  token_value String [not null]
-  scores Int [not null]
-  job_id Int [not null]
-  job job [not null]
-}
-
-Table buy_turn {
+Table events {
   tx_hash String [pk]
-  buyer_address String [not null]
-  number_of_turns Int [not null]
-  job_id Int [not null]
-  job job [not null]
-}
-
-Table open_cell {
-  tx_hash String [pk]
-  player_address String [not null]
-  key Int [not null]
-  cell Int [not null]
+  event_name String [not null]
+  event_data Json
+  status Int [not null]
+  timestamp Int [not null]
   job_id Int [not null]
   job job [not null]
 }
@@ -58,10 +28,4 @@ Enum JobStatus {
   failed
 }
 
-Ref: create_news_event.job_id > job.id
-
-Ref: claim_token_event.job_id > job.id
-
-Ref: buy_turn.job_id > job.id
-
-Ref: open_cell.job_id > job.id
+Ref: events.job_id > job.id

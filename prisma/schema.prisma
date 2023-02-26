@@ -15,53 +15,23 @@ generator dbml {
 }
 
 model job {
-    id                Int                 @id @default(autoincrement())
-    name              String? //crawler_<contract name>_<version: optional>
-    start_block       Int?
-    end_block         Int?
-    status            JobStatus?
-    created_at        DateTime            @default(now())
-    create_news_event create_news_event[]
-    claim_token_event claim_token_event[]
-    buy_turn          buy_turn[]
-    open_cell         open_cell[]
+    id          Int        @id @default(autoincrement())
+    name        String? //crawler_<contract name>_<version: optional>
+    start_block Int?
+    end_block   Int?
+    status      JobStatus?
+    created_at  DateTime   @default(now())
+    events      events[]
 }
 
-model create_news_event {
-    id            Int    @id
-    owner_address String
-    is_claim      String
-    total_supply  String
-    tx_hash       String
-    scores        Int
-    job_id        Int
-    job           job    @relation(fields: [job_id], references: [id])
-}
-
-model claim_token_event {
-    id             Int    @id
-    reader_address String
-    token_value    String
-    scores         Int
-    job_id         Int
-    job            job    @relation(fields: [job_id], references: [id])
-}
-
-model buy_turn {
-    tx_hash         String @id
-    buyer_address   String
-    number_of_turns Int
-    job_id          Int
-    job             job    @relation(fields: [job_id], references: [id])
-}
-
-model open_cell {
-    tx_hash        String @id
-    player_address String
-    key            Int
-    cell           Int
-    job_id         Int
-    job            job    @relation(fields: [job_id], references: [id])
+model events {
+    tx_hash    String @id
+    event_name String
+    event_data Json?
+    status     Int
+    timestamp  Int
+    job_id     Int
+    job        job    @relation(fields: [job_id], references: [id])
 }
 
 enum JobStatus {
