@@ -8,6 +8,6 @@ export class CrawlerController {
 
   @Get()
   async test() {
-    return await this.crawlerService.createJobEvent(EContract.Minesweeper, ContractStorage[EContract.Minesweeper].eventsName, '30 * * * * *');
+    return await this.crawlerService.createJobEvent(EContract.Snews, ContractStorage[EContract.Snews].eventsName, '30 * * * * *');
   }
 }

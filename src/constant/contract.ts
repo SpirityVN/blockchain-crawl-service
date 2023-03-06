@@ -1,8 +1,9 @@
 import { JsonRpcProvider, WebSocketProvider } from 'ethers';
-import { BSC_TESTNET_PROVIDER } from 'src/constant/network';
+import { BSC_TESTNET_PROVIDER, SNEWS_CONTRACT_ADDRESS } from 'src/constant/network';
 import { exportProviderViaURL } from 'src/_util';
 import { abi as MinesweeperABI } from '../abi/Minesweeper.json';
 import { MINESWEEPER_CONTRACT_ADDRESS } from './network';
+import { abi as SnewsABI } from '../abi/Snews.json';
 
 export type EventInput = {
   indexed: boolean;
@@ -34,8 +35,16 @@ export const ContractStorage: ContractType = {
     startBlock: 24697350,
     eventsName: ['BuyTurn', 'OpenCell'],
   },
+  Snews: {
+    abi: SnewsABI,
+    address: SNEWS_CONTRACT_ADDRESS,
+    provider: exportProviderViaURL(BSC_TESTNET_PROVIDER),
+    startBlock: 27806075,
+    eventsName: ['CreateNews'],
+  },
 };
 
 export enum EContract {
   Minesweeper = 'Minesweeper',
+  Snews = 'Snews',
 }

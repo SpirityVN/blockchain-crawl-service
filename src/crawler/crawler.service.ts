@@ -2,8 +2,7 @@ import { Injectable, Logger } from '@nestjs/common';
 import { Contract, ContractEventName, EventLog, Log } from 'ethers';
 import { PrismaService } from 'nestjs-prisma';
 import { combineEvents, generateJobName, getRangeBlocks, transformArgsEvent, transformEventByABI } from 'src/_util';
-import { abi } from 'src/abi/Minesweeper.json';
-import { chunk, concat, find, map, pick } from 'lodash';
+import { chunk, find, map, pick } from 'lodash';
 import { events, JobStatus } from '@prisma/client';
 import { CronJob } from 'cron';
 import { CronExpression, SchedulerRegistry } from '@nestjs/schedule';
@@ -92,7 +91,7 @@ export class CrawlerService {
 
     const contract = new Contract(contractStorage.address, contractStorage.abi, contractStorage.provider);
 
-    const contractEvents = transformEventByABI(abi);
+    const contractEvents = transformEventByABI(contractStorage.abi);
 
     let eventRaws: Log[] = [];
 
@@ -121,7 +120,9 @@ export class CrawlerService {
   }
 
   exportEventValue(event: Log, contractEvents: { name: string; params: string[] }[], eventName: string) {
+    console.log(contractEvents, eventName);
     let eventContractDetail = find(contractEvents, { name: eventName });
+
     //@ts-ignore
     return transformArgsEvent(event.args, eventContractDetail.params);
   }
