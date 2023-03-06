@@ -120,9 +120,7 @@ export class CrawlerService {
   }
 
   exportEventValue(event: Log, contractEvents: { name: string; params: string[] }[], eventName: string) {
-    console.log(contractEvents, eventName);
     let eventContractDetail = find(contractEvents, { name: eventName });
-
     //@ts-ignore
     return transformArgsEvent(event.args, eventContractDetail.params);
   }
