@@ -14,8 +14,8 @@ export class CrawlerService {
   constructor(private readonly prismaService: PrismaService, private readonly schedulerRegistry: SchedulerRegistry) {}
   private readonly logger = new Logger(CrawlerService.name);
 
-  async createJobEvent(contractName: EContract, eventsName: string[], cron: string | CronExpression) {
-    let jobName = generateJobName(contractName, eventsName);
+  async createJobEvent(contractName: EContract, eventsName: string[], cron: string | CronExpression, nonceJob: Number = 1) {
+    let jobName = generateJobName(contractName, eventsName) + `_${nonceJob}`;
 
     const job = new CronJob(cron, async () => {
       const contractStorage = ContractStorage[contractName];

@@ -53,7 +53,7 @@
     "@nestjs/platform-fastify": "^9.3.2",
     "@nestjs/platform-socket.io": "^9.3.2",
     "@nestjs/schedule": "^2.2.0",
-    "@nestjs/swagger": "^6.1.4",
+    "@nestjs/swagger": "^6.2.1",
     "@nestjs/websockets": "^9.3.2",
     "@prisma/client": "^4.9.0",
     "bcrypt": "^5.1.0",
